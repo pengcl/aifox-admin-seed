@@ -1,0 +1,39 @@
+.container {
+  min-height: 100%;
+
+  mat-card {
+    margin: 10px;
+  }
+}
+::ng-deep {
+  .weui-uploader__file {
+    cursor: pointer;
+    float: unset !important;
+    width: unset !important;
+    height: 32px !important;
+    .weui-uploader__file-name {
+      line-height: 30px;
+      padding-left: 15px;
+    }
+    .weui-uploader__file-content {
+      right: 0;
+      left: auto !important;
+      ion-icon {
+        font-size: 24px !important;
+        display: block !important;
+      }
+    }
+  }
+  .weui-uploader__input-box {
+    cursor: pointer;
+    float: unset !important;
+    width: unset !important;
+    height: 32px !important;
+    &:before {
+      height: 16px !important;
+    }
+    &:after {
+      width: 16px !important;
+    }
+  }
+}

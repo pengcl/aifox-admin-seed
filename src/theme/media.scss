@@ -1,0 +1,18 @@
+.media-container {
+  position: relative;
+  padding: 12px 12px 0 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 5px 0 20px;
+
+  mat-label {
+    position: absolute;
+    transform: scale(0.75);
+    color: rgba(0, 0, 0, .6);
+    left: 0;
+    background: #fff;
+    top: -10px;
+    z-index: 1;
+    padding: 0 7px;
+  }
+}

@@ -1,0 +1,44 @@
+table:not(.mat-calendar-table) {
+  mat-checkbox {
+    label {
+      margin-bottom: 0;
+    }
+  }
+
+  .vertical-separator {
+    border-left: 1px solid #f0f0f5;
+  }
+
+  th, td {
+    border-left: 1px solid #f0f0f5;
+    padding: 0 15px !important;
+
+    &:first-of-type {
+      padding-left: 24px !important;
+      border-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 24px !important;
+    }
+  }
+
+  .actions, .cdk-column-actions {
+    text-align: right !important;
+    width: 200px;
+
+    button {
+      margin: 0 !important;
+      padding: 0 10px;
+      min-width: unset;
+
+      &:last-child {
+        margin-right: -10px !important;
+      }
+    }
+  }
+
+  .link {
+    cursor: pointer;
+  }
+}

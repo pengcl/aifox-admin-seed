@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>添加自定义类型</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form *ngIf="keys" [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let item of keys"
+                 [size]="12">
+          <mat-form-field [floatLabel]="floatLabelType" *ngIf="item.attributes.type === 'string'" appearance="outline"
+                          class="full-width">
+            <mat-label>{{translate(item.key)}}</mat-label>
+            <input [formControlName]="item.key" matInput [required]="item.attributes.required">
+          </mat-form-field>
+          <mat-form-field [floatLabel]="floatLabelType" *ngIf="item.attributes.type === 'integer'" appearance="outline"
+                          class="full-width">
+            <mat-label>{{translate(item.key)}}</mat-label>
+            <input [formControlName]="item.key" type="number" matInput [required]="item.attributes.required">
+          </mat-form-field>
+          <mat-slide-toggle *ngIf="item.attributes.type === 'boolean'" [formControlName]="item.key" matInput
+                            [required]="item.attributes.required">{{form.get(item.key).value ? '显示' : '隐藏'}}!
+          </mat-slide-toggle>
+          <mat-form-field [floatLabel]="floatLabelType" *ngIf="item.attributes.type === 'text'" appearance="outline"
+                          class="full-width">
+            <mat-label>{{translate(item.key)}}</mat-label>
+            <textarea [formControlName]="item.key" matInput [required]="item.attributes.required"></textarea>
+          </mat-form-field>
+          <mat-form-field [floatLabel]="floatLabelType"
+                          *ngIf="item.attributes.type === 'relation'" appearance="outline"
+                          class="full-width">
+            <mat-label>{{translate(item.key)}}</mat-label>
+            <mat-select [disabled]="true" [formControlName]="item.key" [required]="item.attributes.required"
+                        [multiple]="item.attributes.relationType === 'oneToMany' || item.attributes.relationType === 'manyWay'">
+              <mat-option value="">无</mat-option>
+              <mat-option *ngFor="let option of selector[item.key]"
+                          [value]="option.id">{{option['name_' + lan]}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="dismiss()" color="light" expand="full">关闭</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="save()" color="primary" expand="full">保存</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,47 @@
+<table *ngIf="dataSource" mat-table [dataSource]="dataSource" [ngClass]="formatElevation()">
+
+  <div *ngFor="let column of autoColumns; first as isFirst;">
+    <ng-container matColumnDef="{{column}}">
+      <th mat-header-cell *matHeaderCellDef [ngClass]="{'vertical-separator': options.verticalSeparator}">
+        {{options.capitalisedHeader ? (column | titlecase) : column}}
+      </th>
+      <td mat-cell *matCellDef="let element" [ngClass]="{'vertical-separator': options.verticalSeparator}">
+        <div *ngIf="isFirst">
+          <div class="value-cell">
+            <div [innerHTML]="formatIndentation(element)"></div>
+            <mat-icon [ngStyle]="{'visibility': element.children.length ? 'visible' : 'hidden'}"
+                      (click)="onNodeClick(element)">
+              {{element.isExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}
+            </mat-icon>
+            <div class="link" (click)="onTitleClick(element)">{{element.value[column]}}</div>
+          </div>
+        </div>
+        <div *ngIf="!isFirst">
+          {{element.value[column]}}
+        </div>
+      </td>
+    </ng-container>
+  </div>
+  <!-- Name Column -->
+  <ng-container matColumnDef="actions">
+    <th class="actions" mat-header-cell *matHeaderCellDef [ngClass]="{'vertical-separator': options.verticalSeparator}">
+      {{translate('actions')}}</th>
+    <td class="actions" mat-cell *matCellDef="let element" [ngClass]="{'vertical-separator': options.verticalSeparator}">
+      <button (click)="handleToAdd(element)" mat-button color="primary" [hidden]="hiddenButton">{{translate('Add Submenu')}}</button>
+      <button (click)="handleToAddArticle(element)" mat-button color="primary"
+              *ngIf="element.content_type && element.content_type.code === 'list'">{{translate('Add Article')}}
+      </button>
+      <button (click)="handleToViewArticles(element)" mat-button color="primary"
+              *ngIf="element.content_type && element.content_type.code === 'list'">{{translate('View Articles')}}
+      </button>
+      <button (click)="handleToEdit(element)" mat-button color="accent">{{translate('edit')}}</button>
+      <button (click)="handleToDel(element)" mat-button color="warn">{{translate('delete')}}</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row [ngClass]="{'highlight-on-hover': options.highlightRowOnHover}"
+      *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<!--<mat-paginator [pageSize]="10" showFirstLastButtons></mat-paginator>-->

@@ -1,0 +1,22 @@
+<ion-header>
+  <mat-card class="profile">
+    <mat-card-header>
+      <mat-card-title>{{translate('Article Manage')}}</mat-card-title>
+      <!--<mat-card-subtitle>前端开发工程师 <span>高级</span></mat-card-subtitle>-->
+    </mat-card-header>
+  </mat-card>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <mat-card>
+      <mat-card-content>
+        <app-form [(form)]="form" [keys]="keys" [selector]="selector"></app-form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="save()">{{translate('save')}}</ion-button>
+  </ion-toolbar>
+</ion-footer>

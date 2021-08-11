@@ -1,0 +1,9 @@
+md-editor {
+  .md-editor-container {
+    border-radius: 5px;
+
+    &.fullscreen {
+      padding: 74px 0 58.8px;
+    }
+  }
+}

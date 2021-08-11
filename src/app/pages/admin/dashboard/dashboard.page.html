@@ -1,0 +1,66 @@
+<mat-card class="profile">
+  <mat-card-header>
+    <div mat-card-avatar class="header-image">
+      <img src="/assets/images/avatar.jpg">
+    </div>
+    <mat-card-title>{{user?.username}}</mat-card-title>
+    <mat-card-subtitle>{{user.email}}<br><span>{{user.updated_at | date : 'yyyy-MM-dd :HH:mm:ss'}}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-footer class="page-extra">
+    <div>
+      <p>栏目数</p>
+      <p> {{count.menu}} </p>
+    </div>
+    <div>
+      <p>文档数</p>
+      <p> {{count.article}} </p>
+    </div>
+    <div>
+      <p>文件数</p>
+      <p> {{count.upload}} </p>
+    </div>
+  </mat-card-footer>
+</mat-card>
+
+<div class="content">
+  <div class="content-left">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>我的文档</mat-card-title>
+        <mat-card-subtitle>更多</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <ion-list *ngFor="let item of items.article">
+          <ion-item>
+            <ion-label>
+              <h2>{{item | lan : 'title'}}[{{item.menu['name_' + lan]}}]</h2>
+              <p>{{item | lan : 'description'}}</p>
+              <p class="detail"></p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="content-right">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>我的栏目</mat-card-title>
+        <mat-card-subtitle>更多</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <ion-list>
+          <ion-item *ngFor="let item of items.menu; let i = index"
+                    [lines]="(i + 1) !== items.menu.length ? true : 'none'" detail>
+            <ion-label>
+              <h2>{{item['name_' + lan]}}</h2>
+              <p>{{item.channel['name_' + lan]}}频道</p>
+            </ion-label>
+            <ion-note>子菜单<p style="margin: 0">{{item.menus.length}}个</p></ion-note>
+          </ion-item>
+        </ion-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

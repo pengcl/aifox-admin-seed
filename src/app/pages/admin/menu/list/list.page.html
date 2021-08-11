@@ -1,0 +1,48 @@
+<ion-header>
+  <mat-card class="profile">
+    <mat-card-header>
+      <mat-card-title>{{translate('Menu Manage')}}</mat-card-title>
+      <!--<mat-card-subtitle>前端开发工程师 <span>高级</span></mat-card-subtitle>-->
+    </mat-card-header>
+  </mat-card>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <mat-card>
+      <mat-card-content>
+        <ion-grid class="table-actions">
+          <ion-row>
+            <ion-col size="3">
+              <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="搜索文章标题">
+              </mat-form-field>
+            </ion-col>
+            <ion-col size="3">
+
+            </ion-col>
+            <ion-col size="3">
+
+            </ion-col>
+            <ion-col size="3">
+              <div class="actions">
+                <button (click)="addMenu()" mat-raised-button color="primary">{{translate('add')}}</button>
+                <!--<button mat-raised-button color="warn">删除</button>-->
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <app-empty *ngIf="items && items.length === 0"></app-empty>
+        <app-tree-table (addMenu)="addSubmenu($event)"
+                        (editMenu)="editMenu($event)"
+                        (delMenu)="delMenu($event)"
+                        (addArticle)="addArticle($event)"
+                        (titleClicked)="titleClicked($event)"
+                        (viewArticles)="viewArticles($event)"
+                        *ngIf="items && items.length > 0"
+                        [tree]="items"
+                        [options]="opts"></app-tree-table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ion-content>
+

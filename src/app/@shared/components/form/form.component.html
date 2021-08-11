@@ -1,0 +1,89 @@
+<form *ngIf="keys" [formGroup]="form">
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let item of keys"
+                     [size]="item.attributes.type === 'text' ||
+                item.attributes.type === 'richtext' ||
+                 item.key === 'file' ||
+                  item.key === 'title' ||
+                   item.key === 'title_cn' ||
+                    item.key === 'title_en' ||
+                     item.key === 'title_hk' ? 12 : 6">
+                <mat-form-field [floatLabel]="floatLabelType"
+                                *ngIf="item.attributes.type === 'string' || item.attributes.type === 'email' || item.attributes.type === 'password'"
+                                appearance="outline"
+                                class="full-width">
+                    <mat-label>{{translate(item.key)}}</mat-label>
+                    <input [type]="item.attributes.type === 'string' ? 'text' : item.attributes.type" [formControlName]="item.key" matInput [required]="item.attributes.required">
+                </mat-form-field>
+                <mat-form-field [floatLabel]="floatLabelType" *ngIf="item.attributes.type === 'timestamp' || item.attributes.type === 'datetime'" appearance="outline"
+                                class="full-width">
+                    <mat-label>发布日期</mat-label>
+                    <input [formControlName]="item.key" matInput [required]="item.attributes.required" [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field [floatLabel]="floatLabelType" *ngIf="item.attributes.type === 'integer'"
+                                appearance="outline"
+                                class="full-width">
+                    <mat-label>{{translate(item.key)}}</mat-label>
+                    <input [formControlName]="item.key" type="number" matInput [required]="item.attributes.required">
+                </mat-form-field>
+                <mat-slide-toggle *ngIf="item.attributes.type === 'boolean'" [formControlName]="item.key" matInput
+                                  [required]="item.attributes.required">{{translate(item.key)}}!
+                </mat-slide-toggle>
+                <mat-form-field [floatLabel]="floatLabelType" *ngIf="item.attributes.type === 'text'"
+                                appearance="outline"
+                                class="full-width">
+                    <mat-label>{{translate(item.key)}}</mat-label>
+                    <textarea [formControlName]="item.key" matInput [required]="item.attributes.required"></textarea>
+                </mat-form-field>
+                <div class="media-container media_{{item.key}}" *ngIf="item.attributes.type === 'media'">
+                    <mat-label>{{translate(item.key)}}</mat-label>
+                    <!--<app-file-view [multiple]="item.attributes.multiple"
+                                   [medias]="selector[item.key]"></app-file-view>-->
+                    <app-uploader [formControlName]="item.key" (deleteSuccess)="deleteSuccess(item,$event)"
+                                  (uploadSuccess)="uploadSuccess(item,$event)"
+                                  [required]="item.attributes.required" [multiple]="item.attributes.multiple"
+                                  [medias]="selector[item.key]"></app-uploader>
+                </div>
+                <mat-form-field [floatLabel]="floatLabelType"
+                                *ngIf="item.attributes.type === 'relation' && item.key !== 'custom_type'"
+                                appearance="outline"
+                                class="full-width">
+                    <mat-label>{{translate(item.key)}}</mat-label>
+                    <mat-select [formControlName]="item.key" [required]="item.attributes.required"
+                                [multiple]="item.attributes.relationType === 'oneToMany' || item.attributes.relationType === 'manyWay'">
+                        <mat-option value="">无</mat-option>
+                        <mat-option *ngFor="let option of selector[item.key]"
+                                    [value]="option.id">{{option['name_' + lan] || option['title_' + lan] || option['name'] || option['title']}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="{{item.key === 'custom_type' ? 'custom_type' : ''}}"
+                                [floatLabel]="floatLabelType"
+                                *ngIf="item.attributes.type === 'relation' && item.key === 'custom_type'"
+                                appearance="outline"
+                                class="full-width">
+                    <mat-label>{{translate(item.key)}}</mat-label>
+                    <mat-select [formControlName]="item.key" [required]="item.attributes.required"
+                                [multiple]="item.attributes.relationType === 'oneToMany' || item.attributes.relationType === 'manyWay'">
+                        <mat-option value="">无</mat-option>
+                        <mat-option *ngFor="let option of selector[item.key] | customType : form.get('menu').value"
+                                    [value]="option.id">{{option['name_' + lan]}}</mat-option>
+                    </mat-select>
+                    <mat-hint (click)="addCustomType()" class="link">添加自定义类型</mat-hint>
+                </mat-form-field>
+                <div class="edit-container" *ngIf="item.attributes.type === 'richtext'">
+                    <mat-label>{{translate(item.key)}}</mat-label>
+                    <md-editor [options]="{showPreviewPanel:false,max:2000}"
+                               [upload]="doUpload"
+                               [formControlName]="item.key"
+                               [height]="'400px'"
+                               [required]="item.attributes.required"
+                               maxlength="10000">
+                    </md-editor>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</form>

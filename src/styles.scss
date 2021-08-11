@@ -1,0 +1,431 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+/* Core CSS required for Ionic components to work properly */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@ionic/angular/css/core.css";
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import '~@angular/material/theming';
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+@import "theme/md-editor";
+@import "theme/media";
+@import "theme/md-table";
+
+$primary: #3f51b5;
+$warn: #f44336;
+$success: #07c160;
+$disabled: rgba(0, 0, 0, .26);
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  color: #3f51b5;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container {
+  padding: 16px;
+  max-width: unset !important;
+  position: relative;
+}
+
+table {
+  width: 100%;
+
+  td {
+    button {
+      margin-right: 8px !important;
+      font-size: 12px !important;
+      line-height: 24px !important;
+    }
+  }
+}
+
+ion-note {
+  font-size: 12px;
+  text-align: right;
+  align-self: center;
+
+  p {
+    margin: 5px 0;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.text-warn {
+  color: $warn;
+}
+
+.text-success {
+  color: $success;
+}
+
+.text-finished {
+  color: $success;
+}
+
+.text-waiting {
+  color: $disabled;
+}
+
+.text-fail {
+  color: $warn;
+}
+
+.text-being {
+  color: $primary;
+}
+
+.text-disabled {
+  color: $disabled;
+}
+
+.link {
+  color: #006eff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.search-form {
+  display: flex;
+
+  .mat-form-field, .actions {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .mat-form-field {
+    .mat-form-field-wrapper {
+    }
+  }
+
+  .actions {
+    flex: 1;
+    align-self: center;
+    text-align: right;
+    margin-right: 0;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+}
+
+mat-card.profile {
+  border-radius: 0;
+
+  [mat-card-avatar] {
+    width: 72px;
+    height: 72px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  mat-card-header {
+    display: flex;
+
+    mat-card-title {
+      margin-top: 10px;
+    }
+
+    &::ng-deep {
+      mat-card-header-text {
+        align-self: center;
+      }
+    }
+  }
+
+  .page-extra {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    white-space: nowrap;
+    min-width: 242px;
+    margin: 0 0 0 88px;
+
+    & > div {
+      position: relative;
+      display: inline-block;
+      padding: 0 32px;
+
+      & > p:first-child {
+        margin-bottom: 4px;
+        color: #666;
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      & > p {
+        margin: 0;
+        color: #333;
+        font-size: 30px;
+        line-height: 38px;
+
+        & > span {
+          color: #666;
+          font-size: 20px;
+        }
+
+        & > sub {
+          color: #666;
+          font-size: 14px;
+          vertical-align: baseline;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        top: 8px;
+        right: 0;
+        width: 1px;
+        height: 40px;
+        background-color: #999;
+        content: '';
+      }
+    }
+
+    & > div:last-child {
+      padding-right: 0;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+ion-popover {
+  --width: 400px !important;
+}
+
+.button-row {
+  margin: 16px 0;
+
+  button {
+    margin-right: 8px;
+  }
+}
+
+.actions {
+  a {
+    margin: 0 8px 0 0;
+  }
+}
+
+.statistics {
+  margin: -8px -8px 8px -8px;
+}
+
+.statistic-item {
+  display: inline-block;
+  width: 16.6666667%;
+}
+
+.statistic {
+  border-radius: 2px;
+  background-color: #fff;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 8px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+  .statistic-body {
+    padding: 15px 15px 0;
+
+    span.counter {
+      font-size: 24px;
+      font-weight: normal;
+      font-family: 'Source Sans Pro';
+      display: block;
+
+      &.counter-link {
+        color: #006eff;
+      }
+    }
+  }
+
+  .statistic-ft {
+    padding: 10px 15px;
+    line-height: 24px;
+    font-size: 0;
+
+    .icons {
+      width: 24px;
+      height: 24px;
+      vertical-align: top;
+      display: inline-block;
+      text-align: center;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 14px;
+      animation-duration: 1s;
+      animation-fill-mode: both;
+
+      &:before {
+        line-height: 24px;
+      }
+    }
+
+    .label {
+      display: inline-block;
+      height: 24px;
+      line-height: 24px;
+      vertical-align: top;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+    .statistic-body {
+
+      span.counter {
+        color: red;
+      }
+    }
+
+    .statistic-ft {
+
+      .icons {
+        animation-name: flipInX;
+        backface-visibility: visible;
+      }
+
+      .label {
+        color: #006eff;
+      }
+    }
+  }
+}
+
+.uploader {
+  &::ng-deep {
+    .mat-form-field-underline {
+      display: none;
+    }
+  }
+
+  .weui-uploader__input-box {
+    margin: 10px 10px 0 0;
+    border-radius: 5px;
+    border: 1px dashed currentColor;
+
+    &:before, &:after {
+      display: none;
+    }
+
+    .weui-uploader__input-box-text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+
+      ion-icon {
+        display: block;
+        margin: 5px auto;
+        font-size: 36px;
+      }
+
+      h3 {
+        font-size: 14px;
+        text-align: center;
+        margin: 5px 0 10px;
+      }
+
+      p {
+        text-align: center;
+        margin: 10px 0 0;
+        color: #999;
+      }
+    }
+
+    &.uploaded {
+      border: 1px dashed #fff;
+      color: #fff;
+    }
+  }
+
+  .weui-uploader__bd {
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+
+  .weui-uploader__file {
+    width: 100%;
+    height: 150px;
+  }
+
+  .weui-uploader__input {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  .weui-uploader__input-box {
+    width: 100%;
+    height: 150px;
+  }
+}
+
+.container {
+  min-height: 100%;
+
+  mat-card {
+    margin: 10px;
+  }
+}
+[routerLink] {
+  cursor: pointer;
+}

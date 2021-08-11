@@ -1,0 +1,72 @@
+<div class="content">
+  <div class="content-left">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>文件内容</mat-card-title>
+      </mat-card-header>
+      <mat-card-content [formGroup]="form">
+        <ion-list>
+          <ion-list-header>
+            标题
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label position="stacked">标题（简体）</ion-label>
+            <ion-input placeholder="请输入标题（简体）" formControlName="title_cn"></ion-input>
+          </ion-item>
+            <mat-form-field class="uploader">
+              <input type="text" formControlName="licenseImg" matInput style="display: none" required />
+              <div class="weui-uploader">
+                <div class="weui-uploader__bd">
+                  <div class="weui-uploader__input-box" [ngStyle]="{'backgroundImage':'url(' + prefix_url + form.get('licenseImg').value + ')'}">
+                    <div *ngIf="form.get('licenseImg').invalid" class="weui-uploader__input-box-text">
+                      <h3>请选择上传营业执照</h3>
+                    </div>
+                    <div *ngIf="form.get('licenseImg').valid" class="weui-uploader__input-box-text">
+                      <h3>重新上传</h3>
+                    </div>
+                    <input
+                      class="weui-uploader__input"
+                      type="file"
+                      multiple
+                      [weui-uploader-file]="uploader"
+                    />
+                  </div>
+                </div>
+              </div>
+            </mat-form-field>
+        </ion-list>
+
+        <ion-list>
+          <ion-list-header>
+            描述
+          </ion-list-header>
+
+          <ion-item lines="none">
+            <ion-label position="stacked">描述（简体）</ion-label>
+            <ion-textarea rows="6" placeholder="请输入描述（简体）" formControlName="description_cn"></ion-textarea>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">描述（繁体）</ion-label>
+            <ion-textarea rows="6" placeholder="请输入描述（繁体）" formControlName="description_hk"></ion-textarea>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">描述（英文）</ion-label>
+            <ion-textarea  rows="6" placeholder="请输入描述（英文）" formControlName="description_en"></ion-textarea>
+          </ion-item>
+        </ion-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="content-right">
+    <ion-grid class="table-actions">
+      <ion-row>
+        <ion-col size="3">
+          <div class="actions">
+            <button mat-raised-button color="primary" (click)="save()">保存</button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>

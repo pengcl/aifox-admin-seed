@@ -1,0 +1,26 @@
+.edit-container {
+  position: relative;
+  padding-top: 25px;
+
+  mat-label {
+    position: absolute;
+    transform: scale(0.75);
+    color: rgba(0, 0, 0, .6);
+    top: 0;
+    left: 5px;
+  }
+}
+
+/*mat-form-field {
+  &.custom_type {
+    margin-right: 50px;
+    width: calc(100% - 50px);
+  }
+
+  & + ion-icon {
+    position: absolute;
+    right: 10px;
+    font-size: 32px;
+    margin-top: 10px;
+  }
+}*/

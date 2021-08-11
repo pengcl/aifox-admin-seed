@@ -1,0 +1,36 @@
+<div class="weui-uploader">
+  <div class="weui-uploader__bd">
+    <ul class="weui-uploader__files">
+      <li
+        class="weui-uploader__file weui-uploader__file_status"
+        *ngFor="let item of medias"
+        [ngStyle]="{backgroundImage:'url(' + PREFIX_URL + (item.formats ? item.formats.thumbnail.url : item.url) + ')'}"
+      >
+        <div class="weui-uploader__file-name">{{item.name}}</div>
+        <div class="weui-uploader__file-content">
+          <ion-icon (click)="delItem(item)" name="close-circle"></ion-icon>
+        </div>
+      </li>
+      <li
+        class="weui-uploader__file weui-uploader__file_status"
+        *ngFor="let item of uploader.queue"
+        [weui-thumb]="item._file"
+      >
+        <div class="weui-uploader__file-name">{{item._file.name}}</div>
+        <div class="weui-uploader__file-content" *ngIf="item.isUploading">{{ item.progress }}%</div>
+        <div class="weui-uploader__file-content">
+          <ion-icon (click)="delQueue(item)" name="close-circle"></ion-icon>
+        </div>
+      </li>
+    </ul>
+    <div class="weui-uploader__input-box" *ngIf="(!multiple && (uploader.queue.length + medias?.length) < 1) || multiple">
+      <input
+        class="weui-uploader__input"
+        type="file"
+        [required]="required"
+        [multiple]="multiple"
+        [weui-uploader-file]="uploader"
+      />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<app-header></app-header>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [opened]="true">
+    <mat-list>
+      <h3 routerLink="/admin/dashboard" routerLinkActive="active" mat-subheader>
+        <mat-icon mat-list-icon>home</mat-icon>
+        {{translate('dashboard')}}</h3>
+      <mat-divider></mat-divider>
+      <ng-container *ngIf="user.type !== 'supplier' && user.type !== 'employee'">
+        <h3 mat-subheader>
+          <mat-icon mat-list-icon>thumb_up</mat-icon>
+          {{translate('Content Manage')}}
+        </h3>
+        <mat-list-item routerLink="/admin/menu/list" routerLinkActive="active">
+          <p mat-line>{{translate('Menu Manage')}}</p>
+        </mat-list-item>
+        <mat-list-item routerLink="/admin/article/list" routerLinkActive="active">
+          <p mat-line>{{translate('Article Manage')}}</p>
+        </mat-list-item>
+        <!--<mat-list-item routerLink="/admin/asset/list" routerLinkActive="active">
+          <p mat-line>{{translate('File Manage')}}</p>
+        </mat-list-item>-->
+      </ng-container>
+      <mat-divider></mat-divider>
+      <ng-container>
+        <h3 mat-subheader>
+          <mat-icon mat-list-icon>supervisor_account</mat-icon>
+          {{translate('System Manage')}}
+        </h3>
+        <mat-list-item routerLink="/admin/setting" routerLinkActive="active">
+          <p mat-line>{{translate('Site Manage')}}</p>
+        </mat-list-item>
+        <mat-list-item routerLink="/admin/user/list" routerLinkActive="active">
+          <p mat-line>{{translate('User Manage')}}</p>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet [className]="'ion-page'"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

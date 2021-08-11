@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <img *ngIf="settings.logo.url" class="logo" [src]="PREFIX_URL + settings.logo.url">
+  <span>{{translate('AiFox CMS Manage')}}</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{translate('Default Language')}}</mat-label>
+      <mat-select (ngModelChange)="languageChange($event)" formControlName="language" required>
+        <mat-option [value]="item.id" *ngFor="let item of languages">{{item['name_' + lan]}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <!--<button (click)="presentPopover($event)" mat-button>
+    <mat-icon aria-hidden="false" aria-label="Example home icon">notifications</mat-icon>
+  </button>-->
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">account_circle</mat-icon>
+    {{user.name}}
+  </button>
+  <mat-menu #menu="matMenu">
+    <button [routerLink]="['/admin/user/item/me']" mat-menu-item>{{translate('User Info')}}</button>
+    <mat-divider></mat-divider>
+    <button (click)="logout()" mat-menu-item>{{translate('Logout')}}</button>
+  </mat-menu>
+</mat-toolbar>
