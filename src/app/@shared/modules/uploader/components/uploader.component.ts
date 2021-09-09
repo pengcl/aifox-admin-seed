@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {forwardRef} from '@angular/core';
-import {ToastService} from '../../../modules/toast';
+import {ToastService} from '../../toast';
 import {Uploader} from '../uploader.class';
 import {UploaderOptions} from '../uploader.options';
 import {AuthService} from '../../../../pages/auth/auth.service';

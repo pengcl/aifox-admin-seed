@@ -1,0 +1,20 @@
+<div class="app-file__hd">
+    <mat-icon>search</mat-icon>
+    <input placeholder="搜索文件"/>
+</div>
+<div class="app-file__bd">
+    <mat-tab-group size="small">
+        <mat-tab label="文件上传">
+            <app-uploader (deleteSuccess)="deleteSuccess($event)"
+                          (uploadSuccess)="uploadSuccess($event)"
+                          [multiple]="multiple"
+                          [medias]="medias"></app-uploader>
+        </mat-tab>
+        <mat-tab label="网址上传">已选择的文件</mat-tab>
+    </mat-tab-group>
+
+</div>
+<div class="app-file__ft">
+    <a href="#" class="app-file__btn app-file__btn_confirm"
+       (click)="confirm()">确定</a>
+</div>

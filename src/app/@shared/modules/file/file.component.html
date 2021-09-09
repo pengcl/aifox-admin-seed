@@ -1,41 +1,9 @@
 <div class="app-mask" [ngClass]="{ 'app-mask__in': shown }" (click)="hide()"></div>
-<div
-        class="app-file"
-        [ngClass]="{'app-file__in': shown}"
-        #container
->
-    <div class="app-file__hd">
-        <mat-icon>search</mat-icon>
-        <input placeholder="搜索文件"/>
-    </div>
-    <div class="app-file__bd">
-        <button mat-raised-button color="primary">添加更多文件</button>
-        <mat-tab-group>
-            <mat-tab label="已上传的文件">
-                <ion-grid class="files ion-no-padding">
-                    <ion-row>
-                        <ion-col *ngFor="let item of items" [size]="12/5">
-                            <div class="file-box">
-                                <div class="img-box"><img [src]="PREFIX_URL + item.url"></div>
-                                <div class="txt-box">
-                                    <p class="name">{{item.name}}</p>
-                                    <div class="type">
-                                        <p>{{getType(item.mime, 0)}}</p>
-                                    </div>
-                                </div>
-                                <p class="img-meta">{{getType(item.mime, 1)}} - {{item.width}}x{{item.height}} - {{item.size}}KB</p>
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </mat-tab>
-            <mat-tab label="已选择的文件">已选择的文件</mat-tab>
-        </mat-tab-group>
-    </div>
-    <div class="app-file__ft">
-        <a href="#" class="app-file__btn app-file__btn_default"
-           (click)="_onSelect(false)">取消</a>
-        <a href="#" class="app-file__btn app-file__btn_confirm"
-           (click)="_onSelect(true)">确定</a>
-    </div>
+<div class="app-file" [ngClass]="{'app-file__in': shown}" #container>
+    <ng-container *ngIf="type === 'view'">
+        <app-file-view [count]="count" (askForType)="changeType($event)" (askForDismiss)="dismiss($event)" (askForRefresh)="getData()" [params]="params" [items]="items"></app-file-view>
+    </ng-container>
+    <ng-container *ngIf="type === 'upload'">
+        <app-file-upload></app-file-upload>
+    </ng-container>
 </div>

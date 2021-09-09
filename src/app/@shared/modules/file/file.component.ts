@@ -13,6 +13,7 @@ import {Observable, Observer, Subscription} from 'rxjs';
 
 import {FileConfig} from './file.config';
 import {FileService} from './file.service';
+import {getPages} from '../../../@core/utils/extend';
 
 /**
  * 对话框，依赖于 `weui-textarea`、`weui-slider`
@@ -21,6 +22,7 @@ import {FileService} from './file.service';
  *  + 对话框内放表单在weui的表现并不是很如意，因此，在对话框增加 `.weui-dialog__prompt` 样式类名，请自行针对性进行一些样式的覆盖，`ngx-dialog` 不提供任何样式的修正。
  *  + 对于录入型表单其校验机制全都是依赖于正则，默认情况下内置 `email`、`url` 两种表单类型的正则。
  */
+
 @Component({
   selector: 'app-file',
   exportAs: 'appFile',
@@ -31,6 +33,16 @@ import {FileService} from './file.service';
   encapsulation: ViewEncapsulation.None
 })
 export class FileComponent implements OnDestroy {
+  type: 'upload' | 'view' = 'view';
+  @Input() multiple;
+  @Input() medias;
+  constructor(@Inject('PREFIX_URL') public PREFIX_URL,
+              private DEF: FileConfig,
+              private cdr: ChangeDetectorRef,
+              private fileSvc: FileService) {
+    this.getData();
+  }
+
   private observer: Observer<any>;
   shown = false;
 
@@ -51,25 +63,22 @@ export class FileComponent implements OnDestroy {
     _sort: 'updated_at:DESC'
   };
   items;
-
-  constructor(@Inject('PREFIX_URL') public PREFIX_URL,
-              private DEF: FileConfig,
-              private cdr: ChangeDetectorRef,
-              private fileSvc: FileService) {
-    fileSvc.items(this.params).subscribe(res => {
-      this.items = res;
-      console.log(res);
-    });
-  }
-
-  getType(mime, type): any {
-    if (!mime) {
-      return mime;
-    }
-    return mime.split('/')[type];
-  }
+  count = 0;
+  pages = [];
 
   @ViewChild('container', {static: true}) container: any;
+
+  getData(): void {
+    this.fileSvc.count().subscribe(res => {
+      this.count = res;
+      this.pages = getPages(this.params, res);
+    });
+    this.fileSvc.items(this.params).subscribe(res => {
+      this.items = res;
+      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    });
+  }
 
   /**
    * 显示，组件载入页面后并不会显示，显示调用 `show()` 并订阅结果。
@@ -95,12 +104,15 @@ export class FileComponent implements OnDestroy {
     this.close.emit(this);
   }
 
-  _onSelect(type): any {
-
+  dismiss(type): any {
     this.observer.next({});
     this.observer.complete();
     this.hide();
     return false;
+  }
+
+  changeType(e): void {
+    this.type = e;
   }
 
   ngOnDestroy(): void {

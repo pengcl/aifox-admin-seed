@@ -37,6 +37,8 @@ registerLocaleData(zh);
     {provide: 'FILE_PREFIX_URL', useValue: environment.FILE_PREFIX_URL},
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

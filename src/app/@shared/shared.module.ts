@@ -36,7 +36,6 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {TreeTableModule} from './modules/tree-table/tree-table.module';
 import {QuillModule} from 'ngx-quill';
 import {LMarkdownEditorModule} from 'ngx-markdown-editor';
-import {UploaderModule} from './components/uploader';
 import {DialogModule} from './modules/dialog';
 import {ToastModule} from './modules/toast';
 import {FileModule} from './modules/file/file.module';
@@ -87,8 +86,7 @@ import {COMPONENTS, ENTRY_COMPONENTS, PIPES} from './index';
     ...MATERIAL_PART,
     TreeTableModule,
     QuillModule.forRoot(),
-    LMarkdownEditorModule,
-    UploaderModule
+    LMarkdownEditorModule
   ],
   exports: [
     CommonModule,
@@ -102,8 +100,7 @@ import {COMPONENTS, ENTRY_COMPONENTS, PIPES} from './index';
     ...PIPES,
     TreeTableModule,
     QuillModule,
-    LMarkdownEditorModule,
-    UploaderModule
+    LMarkdownEditorModule
   ],
   declarations: [...COMPONENTS, ...ENTRY_COMPONENTS, ...PIPES],
   entryComponents: [ENTRY_COMPONENTS],

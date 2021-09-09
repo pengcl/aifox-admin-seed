@@ -248,7 +248,7 @@
     margin: 15px -15px;
   }
 
-  button {
+  button.add {
     position: absolute;
     right: 24px;
     z-index: 5001;
@@ -311,6 +311,7 @@
         }
       }
     }
+
     .img-meta {
       margin: 0;
       line-height: normal;
@@ -476,5 +477,34 @@ app-file {
   .app-file__error {
     /*color: @dialog-error-color;
     font-size: @dialog-error-font-size;*/
+  }
+}
+
+mat-button-toggle-group {
+  margin: 0 15px 15px;
+
+  .mat-button-toggle-label-content {
+    line-height: 32px !important;
+    ion-icon {
+      margin-bottom: 3px;
+    }
+  }
+  .mat-button-toggle-checked {
+    background: inherit;
+  }
+  mat-button-toggle {
+    font-size: 14px;
+    &.current {
+      font-weight: bold;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 2px;
+        width: 50%;
+        left: 25%;
+        background: rgb(28, 93, 231);
+      }
+    }
   }
 }

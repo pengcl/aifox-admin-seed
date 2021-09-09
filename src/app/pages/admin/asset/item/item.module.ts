@@ -2,7 +2,7 @@ import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {SharedModule} from '../../../../@shared/shared.module';
 import {AdminAssetItemPage} from './item.page';
-import {UploaderModule} from "../../../../@shared/components/uploader";
+import {UploaderModule} from "../../../../@shared/modules/uploader";
 
 @NgModule({
   imports: [

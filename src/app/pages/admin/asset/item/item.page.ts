@@ -5,7 +5,7 @@ import {DocService} from '../../../../@core/modules/apiDocumentaion/doc.service'
 import {AssetService} from '../asset.service';
 import {ToastController} from '@ionic/angular';
 import {MenuService} from '../../menu/menu.service';
-import {Uploader, UploaderOptions} from '../../../../@shared/components/uploader';
+import {Uploader, UploaderOptions} from '../../../../@shared/modules/uploader';
 
 @Component({
   selector: 'app-admin-asset-item',

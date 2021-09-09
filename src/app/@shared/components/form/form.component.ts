@@ -4,10 +4,10 @@ import { LanguageService } from '../../../@core/modules/languiage/language.servi
 import { SettingService } from '../../../pages/admin/setting/setting.service';
 import { UploadResult } from 'ngx-markdown-editor';
 import { FormGroup } from '@angular/forms';
-import { Uploader, UploaderOptions } from '../uploader';
+import { Uploader, UploaderOptions } from '../../modules/uploader';
 import { AuthService } from '../../../pages/auth/auth.service';
 import { CustomTypeComponent } from '../customType/customType.component';
-import { UploadService } from '../uploader/upload.service';
+import { UploadService } from '../../modules/uploader/upload.service';
 import { formData } from '../../../@core/utils/extend';
 import { forkJoin } from 'rxjs';
 import { ToastService } from '../../modules/toast';

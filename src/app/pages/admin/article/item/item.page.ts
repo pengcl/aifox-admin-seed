@@ -1,6 +1,6 @@
 import {Component, HostBinding, Injector} from '@angular/core';
 import {AppItemBaseComponent} from '../../../../@shared/components/base/base.component';
-import {UploadService} from '../../../../@shared/components/uploader/upload.service';
+import {UploadService} from '../../../../@shared/modules/uploader/upload.service';
 import {ArticleService} from '../article.service';
 import {FileService} from '../../../../@shared/modules/file/file.service';
 
@@ -29,6 +29,9 @@ export class AdminArticleItemPage extends AppItemBaseComponent {
     super(injector);
     this.init('article', this.orderKeys);
     this.form.get('menu').setValue(Number(this.menu));
+    this.fileSvc.show().subscribe(res => {
+      console.log(res);
+    });
   }
 
   save(): any {

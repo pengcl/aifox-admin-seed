@@ -1,6 +1,6 @@
 import {Component, HostBinding, Injector} from '@angular/core';
 import {AppItemBaseComponent} from '../../../../@shared/components/base/base.component';
-import {UploadService} from '../../../../@shared/components/uploader/upload.service';
+import {UploadService} from '../../../../@shared/modules/uploader/upload.service';
 import {ArticleService} from '../../article/article.service';
 
 @Component({

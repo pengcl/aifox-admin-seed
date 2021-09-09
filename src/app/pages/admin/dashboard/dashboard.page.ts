@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {SettingService} from '../setting/setting.service';
 import {AuthService} from '../../auth/auth.service';
-import {UploadService} from '../../../@shared/components/uploader/upload.service';
+import {UploadService} from '../../../@shared/modules/uploader/upload.service';
 import {MenuService} from '../menu/menu.service';
 import {ArticleService} from '../article/article.service';
 import {LanguageService} from '../../../@core/modules/languiage/language.service';
